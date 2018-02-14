@@ -21,7 +21,7 @@ Route::get('/', function () {
     $age = 39;
 
     // Eloquent method
-    $tasksCount = App\Task::count();
+    $tasksCount = Task::count();
 
     // Query builder method
     //$tasksCount = DB::table('tasks')->count();
@@ -34,20 +34,8 @@ Route::get('/', function () {
 
 });
 
-// Show all tasks
-Route::get('/tasks', function () {
-
-    $tasks = App\Task::incomplete();
-    //$tasks = DB::table('tasks')->latest()->get();
-
-    return view('tasks.index', compact('tasks'));
-});
+// Tasks index
+Route::get('/tasks', 'TasksController@index');
 
 // Show single task
-Route::get('/tasks/{task}', function ($id) {
-
-    $task = App\Task::find($id);
-    //$task = DB::table('tasks')->find($id);
-
-    return view('tasks.show', compact('task'));
-});
+Route::get('/tasks/{task}', 'TasksController@show');
