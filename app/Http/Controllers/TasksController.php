@@ -15,10 +15,13 @@ class TasksController extends Controller
         return view('tasks.index', compact('tasks'));
     }
 
-    public function show($id) {
+    // Use route model binding to pass in the task model instance instead of an id
+    public function show(Task $task) {
 
+        // Query no longer necessary due to route model binding
         //$task = DB::table('tasks')->find($id);
-        $task = Task::find($id);
+        //$task = Task::find($id);
+
         return view('tasks.show', compact('task'));
     }
 }
