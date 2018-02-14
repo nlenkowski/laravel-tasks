@@ -14,8 +14,26 @@
 // Get task model
 use App\Task;
 
+// Index
 Route::get('/', function () {
-    return view('welcome');
+
+    $name = 'Nathan';
+    $age = 39;
+
+    // Eloquent method
+    $tasksCount = App\Task::count();
+
+    // Query builder method
+    //$tasksCount = DB::table('tasks')->count();
+
+    return view('welcome', compact('name', 'age', 'tasksCount'));
+
+    // Alternate methods of returning data
+    // return view('welcome', [ 'name' => $name ]);
+    // return view('welcome')->with('name', $name);
+
+});
+
 // Show all tasks
 Route::get('/tasks', function () {
 
